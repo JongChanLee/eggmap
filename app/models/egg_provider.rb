@@ -1,0 +1,2 @@
+class EggProvider < ApplicationRecord
+end
