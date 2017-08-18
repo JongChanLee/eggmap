@@ -1,25 +1,22 @@
-<div id="mapid"></div>
+<section class="index">
+  <div id="map"></div>
+  <div class="non-map">
+    <div class="search-area">
+      <input id='search' type="text" autofocus>
+      <div id="btn-search">검색</div>
+    </div>
+    <div class="result-area">
+      <ul>
 
-<script type="text/javascript">
-    var mymap = L.map('mapid').setView([36.5, 128], 6.5);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 13,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1Ijoiam9uZ2NoYW5sZWUiLCJhIjoiY2o2aHFsYnBuMGx1NjJybXE0NXJjaGtreCJ9.QvktajU9AkN8ZYqPtLNg9A'
-    }).addTo(mymap);
-    
-    var marker = L.marker([37.540521, 126.984047], {
-        title: "서울 특별시"
-    }).bindPopup("<b>Hello world!</b><br>I am a popup.", {
-        className: 'popupClass'
-    }).addTo(mymap);
-    
-    console.log(marker.getLatLng());
-    
-  
-  
-  L.geoJSON(geojson).addTo(mymap);
-  
-  
-</script>
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript">
+      var providers = [];
+      var marked_local = [];
+
+      <% @providers.each do |provider| %>
+      providers.push({"local_code": "<%= provider.local_code %>", "provider": "<%= provider.provider %>"});
+      <% end %>
+  </script>
+</section>

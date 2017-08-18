@@ -1,4 +1,51 @@
 // Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
+// They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#mapid { height: 500px; }
+.index {
+  display: flex;
+  flex-direction: row;
+  #map {
+    height: 100vh;
+    width: 500px;
+  }
+  .non-map {
+    .search-area {
+      display: flex;
+      flex-direction: row;
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #btn-search {
+        border: 1px solid $main-color-blue;
+        background-color: $main-color-blue;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .result-area {
+      ul {
+        list-style-type: none;
+        .provider-area {
+          display: flex;
+          flex-direction: row;
+          .local-code {
+            background-color: $main-color-pink;
+          }
+          .provider {
+            background-color: $main-color-blue;
+          }
+        }
+      }
+    }
+  }
+  .custom-popup {
+    font-size: 15px;
+    .custom-popup-count {
+      color: red;
+      font-size: 17px;
+      font-weight: bold;
+    }
+  }
+}
