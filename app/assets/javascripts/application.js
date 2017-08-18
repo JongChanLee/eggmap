@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 // require rails-ujs
 //= require turbolinks
 //= require_tree .
@@ -46,6 +47,15 @@ $(document).ready(function () {
 
     function onClick(e) {
 
+        $(".result-area ul").empty();
+        var title = e.target.options.title;
+        for (var i = 0; i < providers.length; i++) {
+            var local_code = providers[i]["local_code"];
+            if (local[local_code]["name"] == title)
+                $(".result-area ul").append("<li><div class='provider-area row'>" +
+                    "<div class='local-code col-xs-7'>" + title + "(" + providers[i]["local_code"] + ")</div>" +
+                    "<div class='provider col-xs-5'>" + providers[i]["provider"] + "</div></div></li>");
+        }
     }
 
     $("#btn-search").click(onSearch);
@@ -59,9 +69,9 @@ $(document).ready(function () {
         $(".result-area ul").empty();
         for (var i = 0; i < providers.length; i++) {
             if (providers[i]["provider"].includes(search_value)) {
-                $(".result-area ul").append("<li><div class='provider-area'>" +
-                    "<div class='local-code'>" + local[providers[i]["local_code"]]["name"] + "(" + providers[i]["local_code"] + ")</div>" +
-                    "<div class='provider'>" + providers[i]["provider"] + "</div></div></li>");
+                $(".result-area ul").append("<li><div class='provider-area row'>" +
+                    "<div class='local-code col-xs-7'>" + local[providers[i]["local_code"]]["name"] + "(" + providers[i]["local_code"] + ")</div>" +
+                    "<div class='provider col-xs-5'>" + providers[i]["provider"] + "</div></div></li>");
             }
         }
     }
