@@ -1,19 +1,21 @@
 <main>
   <section class="index container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-1">
+    <div class="row justify-content-center">
+      <div class="col-xl-5">
         <div id="map"></div>
       </div>
 
-      <div class="col-md-4 mt-5">
-        <input class='search-bar d-block w-100' type="text" autofocus placeholder="농장명을 입력하세요.">
-        <span class="reference d-block text-right">정보 출처 : 식품안전정보포털</span>
+      <div class="col-xl-5 mt-5">
+        <input class='search-bar d-block w-100' type="text" autofocus placeholder="난각코드를 입력하세요.">
+        <a href="http://www.foodsafetykorea.go.kr/portal/fooddanger/eggHazardList.do?menu_grp=MENU_NEW02&menu_no=3497" target="_blank" class="reference d-block text-right">정보
+          출처 : 식품안전정보포털(링크)</a>
         <div class="result">
           <table class="my-3 w-100">
             <thead>
             <tr>
               <th>지역(코드)</th>
               <th>농장명</th>
+              <th>난각코드</th>
             </tr>
             </thead>
             <tbody>
@@ -21,6 +23,7 @@
             </tbody>
           </table>
         </div>
+        <span class="reference d-block text-center">Contact : tutan123@naver.com</span>
       </div>
     </div>
   </section>
@@ -30,6 +33,17 @@
     var marked_local = [];
 
     <% @providers.each do |provider| %>
-    providers.push({"local_code": "<%= provider.local_code %>", "provider": "<%= provider.provider %>"});
+    providers.push({
+        "local_cd": "<%= provider.local_cd %>",
+        "sido_nm": "<%= provider.sido_nm %>",
+        "nongga_nm": "<%= provider.nongga_nm %>",
+        "nagak_cd": "<%= provider.nagak_cd %>"
+    });
+
     <% end %>
+
+    for (var i = 0; providers.length; i++) {
+        console.log(providers[i]["nagak_cd"].replace(/&lt;br&gt;/g, "\r\n"));
+    }
+
 </script>

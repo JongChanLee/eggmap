@@ -13,8 +13,10 @@
 ActiveRecord::Schema.define(version: 20170818123242) do
 
   create_table "egg_providers", force: :cascade do |t|
-    t.string "local_code", null: false
-    t.string "provider", null: false
+    t.string "nagak_cd", null: false
+    t.string "sido_nm", null: false
+    t.string "nongga_nm", null: false
+    t.string "local_cd", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

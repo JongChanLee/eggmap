@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Eggmap</title>
-    <%= csrf_meta_tags %>
+<html lang="ko">
+<head>
+  <title>살충제 달걀 지도</title>
+  <%= csrf_meta_tags %>
 
-    <meta charset="UTF-8">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"  integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="  crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"  integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="  crossorigin=""></script>
-  </head>
+  <meta name="Subject" content="살충제 달걀을 표시해주는 사이트">
+  <meta name="Title" content="살충제 달걀 지도">
+  <meta name="Description" content="식품안전정보포털로 부터 얻어온 살충제 달걀 농장에 대한 데이터를 표시해주는 지도입니다.">
+  <meta name="Keywords" content="살충제, 달걀, 살충제 달걀, 계랸, 살충제 계란">
+  <meta name="Author" content="JongChan Lee">
+  <meta name="Classification" content="Information">
+  <meta name="Generator" content="RubyMine">
+  <meta name="Reply-To(Email)" content="tutan1232naver.com">
+  <meta name="Distribution" content="JongChan Lee">
 
-  <body>
-    <%= yield %>
-  </body>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="13.124.184.75">
+  <meta property="og:site_name" content="살충제 달걀지도">
+  <meta property="og:title" content="살충제 달걀 지도">
+  <meta property="og:description" content="식품안전정보포털로 부터 얻어온 살충제 달걀 농장에 대한 데이터를 표시해주는 지도입니다.">
+
+  <meta charset="UTF-8">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+</head>
+
+<body>
+<%= yield %>
+</body>
 </html>
 

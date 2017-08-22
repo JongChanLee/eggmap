@@ -22,6 +22,10 @@
   .reference {
     font-size: 0.8rem;
     color: lightgrey;
+    &:hover {
+      color: $main-color-pink;
+      font-weight: bold;
+    }
   }
 
   .result {
@@ -34,10 +38,13 @@
       }
     ;
       th:first-child, td:first-child {
-        width: 40%;
+        width: 30%;
       }
       th:nth-child(2), td:nth-child(2) {
-        width: 60%;
+        width: 30%;
+      }
+      th:nth-child(3), td:nth-child(3) {
+        width: 40%;
       }
     }
   }

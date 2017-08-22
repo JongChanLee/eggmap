@@ -27,20 +27,20 @@ $(document).ready(function () {
 
     L.geoJSON(geojson).addTo(map);
     for (var i = 0; i < providers.length; i++) {
-        local[providers[i]["local_code"]]["count"] += 1;
+        local[providers[i]["local_cd"]]["count"] += 1;
     }
 
     var tbody = $("table tbody");
 
     for (var i = 0; i < providers.length; i++) {
-        var count = local[providers[i]["local_code"]]["count"];
-        var local_code = providers[i]["local_code"];
-        if ((count != 0) && !marked_local.includes(local_code)) {
-            marked_local.push(local_code);
-            var lat = local[local_code]["lat"];
-            var long = local[local_code]["long"];
+        var count = local[providers[i]["local_cd"]]["count"];
+        var local_cd = providers[i]["local_cd"];
+        if ((count != 0) && !marked_local.includes(local_cd)) {
+            marked_local.push(local_cd);
+            var lat = local[local_cd]["lat"];
+            var long = local[local_cd]["long"];
             L.marker([lat, long], {
-                title: local[local_code]["name"]
+                title: local[local_cd]["sido_nm"]
             }).bindPopup("<div class='custom-popup'>검출된 농장 <span class='custom-popup-count'>" + count + "</span>개 </div>"
             ).on('click', onClick).addTo(map);
         }
@@ -50,25 +50,26 @@ $(document).ready(function () {
         tbody.empty();
         var title = e.target.options.title;
         for (var i = 0; i < providers.length; i++) {
-            var local_code = providers[i]["local_code"];
-            if (local[local_code]["name"] == title)
+            var local_cd = providers[i]["local_cd"];
+            if (local[local_cd]["sido_nm"] == title)
                 tbody.append("<tr>" +
-                    "<td>" + title + "(" + providers[i]["local_code"] + ")</td>" +
-                    "<td>" + providers[i]["provider"] + "</td>" +
+                    "<td>" + title + "(" + providers[i]["local_cd"] + ")</td>" +
+                    "<td>" + providers[i]["nongga_nm"] + "</td>" +
+                    "<td>" + providers[i]["nagak_cd"].replace(/&lt;br&gt;/g, "<br>") + "</td>" +
                     "</tr>");
         }
     }
 
     $("input.search-bar").keyup(function (e) {
-        console.log($(this).val());
         tbody.empty();
         var value = $(this).val();
         for (var i = 0; i < providers.length; i++) {
-            var local_code = providers[i]["local_code"];
-            if(providers[i]["provider"].includes(value)){
+            var local_cd = providers[i]["local_cd"];
+            if (providers[i]["nagak_cd"].includes(value)) {
                 tbody.append("<tr>" +
-                    "<td>" + local[local_code]["name"] + "(" + providers[i]["local_code"] + ")</td>" +
-                    "<td>" + providers[i]["provider"] + "</td>" +
+                    "<td>" + local[local_cd]["sido_nm"] + "(" + providers[i]["local_cd"] + ")</td>" +
+                    "<td>" + providers[i]["nongga_nm"] + "</td>" +
+                    "<td>" + providers[i]["nagak_cd"].replace(/&lt;br&gt;/g, "<br>") + "</td>" +
                     "</tr>");
             }
         }

@@ -1,3 +1,8 @@
+require 'open-uri'
+require 'net/http'
+require 'uri'
+require 'json'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -6,50 +11,49 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-EggProvider.create([
-                       {local_code:"06", provider:"대전"},
-                       {local_code:"07", provider:"051"},
-                       {local_code:"07", provider:"001"},
-                       {local_code:"08", provider:"신성농장"},
-                       {local_code:"08", provider:"신호"},
-                       {local_code:"08", provider:"LCY"},
-                       {local_code:"08", provider:"맑은농장"},
-                       {local_code:"08", provider:"LSH"},
-                       {local_code:"08", provider:"KD영양란"},
-                       {local_code:"08", provider:"SH"},
-                       {local_code:"08", provider:"쌍용농장"},
-                       {local_code:"08", provider:"가남"},
-                       {local_code:"08", provider:"LNB"},
-                       {local_code:"08", provider:"양계"},
-                       {local_code:"08", provider:"광면농장"},
-                       {local_code:"08", provider:"신둔"},
-                       {local_code:"08", provider:"마리"},
-                       {local_code:"08", provider:"부영"},
-                       {local_code:"08", provider:"마리"},
-                       {local_code:"08", provider:"JHN"},
-                       {local_code:"08", provider:"고산"},
-                       {local_code:"08", provider:"서신"},
-                       {local_code:"09", provider:"지현"},
-                       {local_code:"11", provider:"서영 친환경"},
-                       {local_code:"11", provider:"무연"},
-                       {local_code:"11", provider:"신성봉농장"},
-                       {local_code:"11", provider:"시온"},
-                       {local_code:"11", provider:"대명"},
-                       {local_code:"11", provider:"CMJ"},
-                       {local_code:"11", provider:"송암"},
-                       {local_code:"13", provider:"SCK"},
-                       {local_code:"13", provider:"나선준영"},
-                       {local_code:"13", provider:"정화"},
-                       {local_code:"13", provider:"우리"},
-                       {local_code:"13", provider:"대산"},
-                       {local_code:"13", provider:"둥지"},
-                       {local_code:"13", provider:"드림"},
-                       {local_code:"14", provider:"소망"},
-                       {local_code:"14", provider:"인영"},
-                       {local_code:"14", provider:"황금"},
-                       {local_code:"14", provider:"다인"},
-                       {local_code:"14", provider:"해찬"},
-                       {local_code:"15", provider:"연암"},
-                       {local_code:"15", provider:"온누리"},
-                       {local_code:"15", provider:"CYO"}
-                   ])
+
+url = URI('http://www.foodsafetykorea.go.kr/portal/fooddanger/searchEggNonngList.do')
+
+resp = Net::HTTP.get_response(url)
+hash = JSON(resp.body)
+
+hash.each do |eggProvider|
+  ep = EggProvider.new({nagak_cd: eggProvider['nagak_cd'], sido_nm: eggProvider['sido_nm'], nongga_nm: eggProvider['nongga_nm'] })
+  case eggProvider['sido_nm']
+    when '서울'
+      ep.local_cd = '01'
+    when '부산'
+      ep.local_cd = '02'
+    when '대구'
+      ep.local_cd = '03'
+    when '인천'
+      ep.local_cd = '04'
+    when '광주'
+      ep.local_cd = '05'
+    when '대전'
+      ep.local_cd = '06'
+    when '울산'
+      ep.local_cd = '07'
+    when '경기'
+      ep.local_cd = '08'
+    when '강원'
+      ep.local_cd = '09'
+    when '충북'
+      ep.local_cd = '10'
+    when '충남'
+      ep.local_cd = '11'
+    when '전북'
+      ep.local_cd = '12'
+    when '전남'
+      ep.local_cd = '13'
+    when '경북'
+      ep.local_cd = '14'
+    when '경남'
+      ep.local_cd = '15'
+    when '제주'
+      ep.local_cd = '16'
+    when '세종'
+      ep.local_cd = '17'
+  end
+  ep.save
+end
