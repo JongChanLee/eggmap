@@ -74,4 +74,14 @@ $(document).ready(function () {
             }
         }
     });
+
+
+    for (var i = 0; providers.length; i++) {
+        var local_cd = providers[i]["local_cd"];
+        tbody.append("<tr>" +
+            "<td>" + local[local_cd]["sido_nm"] + "(" + providers[i]["local_cd"] + ")</td>" +
+            "<td>" + providers[i]["nongga_nm"] + "</td>" +
+            "<td>" + providers[i]["nagak_cd"].replace(/&lt;br&gt;/g, "<br>") + "</td>" +
+            "</tr>");
+    }
 });
