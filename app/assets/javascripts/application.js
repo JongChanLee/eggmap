@@ -17,7 +17,12 @@
 //= require_tree .
 
 $(document).ready(function () {
-    var map = L.map('map').setView([36, 127.5], 6.5);
+    var map;
+    if (window.matchMedia('(max-width: 768px)').matches) {
+        map = L.map('map').setView([36, 127.5], 10);
+    }else{
+        map = L.map('map').setView([36, 127.5], 6.5);
+    }
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 13,
