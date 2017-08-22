@@ -19,7 +19,7 @@
 $(document).ready(function () {
     var map;
     if (window.matchMedia('(max-width: 768px)').matches) {
-        map = L.map('map').setView([36, 127.5], 10);
+        map = L.map('map').setView([36, 127.5], 7);
     }else{
         map = L.map('map').setView([36, 127.5], 6.5);
     }
