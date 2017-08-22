@@ -1,0 +1,30 @@
+html {
+    font-size: 15px; /* 15px = 1rem*/
+    line-height: 1.6; /* 24px/15px*/
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+a, a:hover, a:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    color: #181818;
+    margin: 0;
+    padding: 0;
+}

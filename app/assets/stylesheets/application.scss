@@ -1,11 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 $main-color-blue: #91a7d0;
 $main-color-pink: #f6cac9;
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
 @import 'home';
+@import "normalize";
+@import "bootstrap-grid";
+@import "utilities";

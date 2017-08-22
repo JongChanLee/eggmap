@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
 // require rails-ujs
 //= require turbolinks
 //= require_tree .
@@ -31,6 +30,8 @@ $(document).ready(function () {
         local[providers[i]["local_code"]]["count"] += 1;
     }
 
+    var tbody = $("table tbody");
+
     for (var i = 0; i < providers.length; i++) {
         var count = local[providers[i]["local_code"]]["count"];
         var local_code = providers[i]["local_code"];
@@ -46,33 +47,30 @@ $(document).ready(function () {
     }
 
     function onClick(e) {
-
-        $(".result-area ul").empty();
+        tbody.empty();
         var title = e.target.options.title;
         for (var i = 0; i < providers.length; i++) {
             var local_code = providers[i]["local_code"];
             if (local[local_code]["name"] == title)
-                $(".result-area ul").append("<li><div class='provider-area row'>" +
-                    "<div class='local-code col-xs-7'>" + title + "(" + providers[i]["local_code"] + ")</div>" +
-                    "<div class='provider col-xs-5'>" + providers[i]["provider"] + "</div></div></li>");
+                tbody.append("<tr>" +
+                    "<td>" + title + "(" + providers[i]["local_code"] + ")</td>" +
+                    "<td>" + providers[i]["provider"] + "</td>" +
+                    "</tr>");
         }
     }
 
-    $("#btn-search").click(onSearch);
-    $("#search").keydown(function (key) {
-        if (key.keyCode == 13)
-            onSearch()
-    });
-
-    function onSearch() {
-        var search_value = $("#search").val();
-        $(".result-area ul").empty();
+    $("input.search-bar").keyup(function (e) {
+        console.log($(this).val());
+        tbody.empty();
+        var value = $(this).val();
         for (var i = 0; i < providers.length; i++) {
-            if (providers[i]["provider"].includes(search_value)) {
-                $(".result-area ul").append("<li><div class='provider-area row'>" +
-                    "<div class='local-code col-xs-7'>" + local[providers[i]["local_code"]]["name"] + "(" + providers[i]["local_code"] + ")</div>" +
-                    "<div class='provider col-xs-5'>" + providers[i]["provider"] + "</div></div></li>");
+            var local_code = providers[i]["local_code"];
+            if(providers[i]["provider"].includes(value)){
+                tbody.append("<tr>" +
+                    "<td>" + local[local_code]["name"] + "(" + providers[i]["local_code"] + ")</td>" +
+                    "<td>" + providers[i]["provider"] + "</td>" +
+                    "</tr>");
             }
         }
-    }
+    });
 });
